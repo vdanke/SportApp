@@ -1,6 +1,8 @@
 package org.itstep.sport.service.model;
 
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -15,6 +17,8 @@ import java.util.Set;
 @EqualsAndHashCode(of = "username", callSuper = true)
 @ToString(callSuper = true)
 @Builder
+@DynamicInsert
+@DynamicUpdate
 public class Trainee extends User {
 
     @Column(name = "purpose")
@@ -32,4 +36,18 @@ public class Trainee extends User {
             fetch = FetchType.LAZY
     )
     private Set<Coach> coaches = new HashSet<>();
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "trainee", fetch = FetchType.LAZY)
+    private Set<Comment> comments = new HashSet<>();
+
+    public void addCoach(Coach coach) {
+        this.coaches.add(coach);
+        coach.getTrainees().add(this);
+    }
+
+    public void addComment(Comment comment) {
+        this.comments.add(comment);
+        comment.setTrainee(this);
+    }
 }

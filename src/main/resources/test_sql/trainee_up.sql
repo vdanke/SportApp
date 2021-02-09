@@ -1,0 +1,3 @@
+INSERT INTO TRAINEES(ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, AUTHORITY) VALUES(1, 'first@mail.ru', 'firstpassword', 'firstname', 'firstlastname', 'ROLE_TRAINEE');
+INSERT INTO TRAINEES(ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, AUTHORITY) VALUES(2, 'second@mail.ru', 'secondpassword', 'secondname', 'secondlastname', 'ROLE_TRAINEE');
+INSERT INTO TRAINEES(ID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, AUTHORITY) VALUES(3, 'third@mail.ru', 'thirdpassword', 'thirdname', 'thirdlastname', 'ROLE_TRAINEE');
