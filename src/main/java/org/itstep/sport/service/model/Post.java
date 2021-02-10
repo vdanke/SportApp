@@ -45,7 +45,7 @@ public class Post {
 
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "catagory_id")
+    @JoinColumn(name = "category_id")
     private Category category;
 
     @ToString.Exclude

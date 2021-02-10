@@ -1,0 +1,2 @@
+migrate create -ext sql -dir . -seq create_users_table
+migrate -database ${POSTGRESQL_URL} -path . up

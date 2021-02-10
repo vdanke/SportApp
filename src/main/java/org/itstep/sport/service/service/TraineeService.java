@@ -5,4 +5,6 @@ import org.itstep.sport.service.model.Trainee;
 public interface TraineeService {
 
     Trainee save(Trainee trainee);
+
+    Trainee update(Trainee trainee, Long id);
 }

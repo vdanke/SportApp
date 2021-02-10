@@ -77,4 +77,14 @@ public class TraineeRepositoryTest {
 
         Assertions.assertFalse(traineeById.isPresent());
     }
+
+    @Test
+    public void shouldFindUserByIdWithCoaches() {
+        final long id = 1;
+
+        Optional<Trainee> userById = traineeRepository.findByIdWithCoaches(id);
+
+        Assertions.assertTrue(userById.isPresent());
+        Assertions.assertEquals(id, userById.get().getId());
+    }
 }

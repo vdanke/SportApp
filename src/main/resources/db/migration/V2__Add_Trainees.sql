@@ -1,0 +1,3 @@
+insert into trainees(id, authority, firstname, lastname, password, username) values (1, 'ROLE_TRAINEE', 'firstname', 'lastname', 'password', 'first@mail.ru');
+insert into trainees(id, authority, firstname, lastname, password, username) values (2, 'ROLE_TRAINEE', 'secondname', 'secondlastname', 'password', 'second@mail.ru');
+insert into trainees(id, authority, firstname, lastname, password, username) values (3, 'ROLE_TRAINEE', 'thirdname', 'thirdlastname', 'password', 'third@mail.ru');
