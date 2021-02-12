@@ -6,5 +6,5 @@ public interface TraineeService {
 
     Trainee save(Trainee trainee);
 
-    Trainee update(Trainee trainee, Long id);
+    Trainee update(Trainee trainee, String username);
 }

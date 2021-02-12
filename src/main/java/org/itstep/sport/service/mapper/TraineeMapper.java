@@ -19,12 +19,12 @@ public interface TraineeMapper {
     Trainee mapToTraineeFromTraineeUpdateRequest(UpdateTraineeRequest request);
     UpdateTraineeResponse mapToUpdateTraineeResponseFromTrainee(Trainee trainee);
     @Mappings({
-            @Mapping(source = Trainee_.ID, target = Trainee_.ID, ignore = true),
-            @Mapping(source = Trainee_.AUTHORITY, target = Trainee_.AUTHORITY, ignore = true),
-            @Mapping(source = Trainee_.USERNAME, target = Trainee_.USERNAME, ignore = true),
-            @Mapping(source = Trainee_.PASSWORD, target = Trainee_.PASSWORD, ignore = true),
-            @Mapping(source = Trainee_.COACHES, target = Trainee_.COACHES, ignore = true),
-            @Mapping(source = Trainee_.COMMENTS, target = Trainee_.COMMENTS, ignore = true)
+            @Mapping(target = Trainee_.ID, ignore = true),
+            @Mapping(target = Trainee_.AUTHORITY, ignore = true),
+            @Mapping(target = Trainee_.USERNAME, ignore = true),
+            @Mapping(target = Trainee_.PASSWORD, ignore = true),
+            @Mapping(target = Trainee_.COACHES, ignore = true),
+            @Mapping(target = Trainee_.COMMENTS, ignore = true)
     })
     void updateExistingTrainee(@MappingTarget Trainee existing, Trainee from);
 }
