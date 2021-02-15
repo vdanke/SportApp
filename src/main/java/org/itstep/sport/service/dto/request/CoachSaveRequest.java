@@ -11,7 +11,17 @@ import javax.validation.constraints.Size;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpdateTraineeRequest {
+public class CoachSaveRequest {
+
+    @NotBlank
+    @Size(min = 2, max = 128)
+    @JsonProperty("username")
+    private String username;
+
+    @NotBlank
+    @Size(min = 7, max = 128)
+    @JsonProperty("password")
+    private String password;
 
     @NotBlank
     @Size(min = 2, max = 128)
@@ -25,13 +35,4 @@ public class UpdateTraineeRequest {
 
     @JsonProperty("phoneNumber")
     private String phoneNumber;
-
-    @JsonProperty("purpose")
-    private String purpose;
-
-    @JsonProperty("height")
-    private Integer height;
-
-    @JsonProperty("weight")
-    private Integer weight;
 }

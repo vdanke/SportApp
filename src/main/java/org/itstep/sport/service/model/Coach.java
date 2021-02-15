@@ -16,7 +16,7 @@ import java.util.Set;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "username", callSuper = true)
 @ToString
-@Builder
+//@Builder
 @DynamicInsert
 @DynamicUpdate
 public class Coach extends User {

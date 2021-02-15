@@ -1,7 +1,6 @@
 package org.itstep.sport.service.configuration.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.jsonwebtoken.Jwt;
 import lombok.RequiredArgsConstructor;
 import org.itstep.sport.service.configuration.security.filter.BasicAuthorizationFilter;
 import org.itstep.sport.service.configuration.security.filter.UserAuthenticationFilter;
@@ -9,8 +8,6 @@ import org.itstep.sport.service.service.JwtService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -54,6 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/v1/trainees").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/v1/auth/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v1/coaches").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -63,15 +61,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin().disable()
                 .logout()
                 .and()
-                .cors(httpSecurityCorsConfigurer -> {
-                    CorsConfiguration corsConfiguration = new CorsConfiguration();
-
-                    corsConfiguration.setAllowedOrigins(Collections.singletonList("*"));
-                    corsConfiguration.setAllowedMethods(Collections.singletonList("*"));
-                    corsConfiguration.setAllowCredentials(true);
-                    corsConfiguration.setMaxAge(3600L);
-                    corsConfiguration.setAllowedHeaders(Collections.singletonList("*"));
-                })
+                .cors()
+                .and()
+                .addFilter(corsFilter())
                 .addFilter(authFilter(objectMapper, jwtService))
                 .addFilter(authorizationFilter(jwtService));
     }
@@ -93,12 +85,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         );
     }
 
+    @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
 
         corsConfiguration.setAllowedOrigins(Collections.singletonList("*"));
         corsConfiguration.setAllowedMethods(Collections.singletonList("*"));
-        corsConfiguration.setAllowCredentials(true);
         corsConfiguration.setMaxAge(3600L);
         corsConfiguration.setAllowedHeaders(Collections.singletonList("*"));
 

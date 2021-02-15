@@ -17,8 +17,6 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.mockito.ArgumentMatchers.any;
-
 @ExtendWith(SpringExtension.class)
 @TestExecutionListeners(
         listeners = {

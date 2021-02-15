@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.itstep.sport.service.dto.request.UserLoginRequest;
-import org.itstep.sport.service.model.User;
 import org.itstep.sport.service.model.UserDetailsImpl;
 import org.itstep.sport.service.service.JwtService;
 import org.springframework.http.HttpHeaders;
@@ -13,11 +12,8 @@ import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -65,7 +61,9 @@ public class UserAuthenticationFilter extends UsernamePasswordAuthenticationFilt
 
         response.setStatus(HttpStatus.OK.value());
         response.setHeader(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, HttpHeaders.AUTHORIZATION);
+        response.addHeader(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, "Role");
         response.setHeader(HttpHeaders.AUTHORIZATION, token);
+        response.setHeader("Role", userDetails.getUser().getAuthority().name());
     }
 
     @Override

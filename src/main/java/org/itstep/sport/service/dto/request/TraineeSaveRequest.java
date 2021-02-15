@@ -34,4 +34,7 @@ public class TraineeSaveRequest {
     @Size(min = 2, max = 128)
     @JsonProperty("lastname")
     private String lastname;
+
+    @JsonProperty("phoneNumber")
+    private String phoneNumber;
 }

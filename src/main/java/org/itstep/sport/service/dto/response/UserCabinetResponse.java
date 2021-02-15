@@ -1,37 +1,33 @@
-package org.itstep.sport.service.dto.request;
+package org.itstep.sport.service.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpdateTraineeRequest {
+public class UserCabinetResponse {
 
-    @NotBlank
-    @Size(min = 2, max = 128)
+    @JsonProperty("username")
+    private String username;
+
     @JsonProperty("firstname")
     private String firstname;
 
-    @NotBlank
-    @Size(min = 2, max = 128)
     @JsonProperty("lastname")
     private String lastname;
 
     @JsonProperty("phoneNumber")
     private String phoneNumber;
 
-    @JsonProperty("purpose")
-    private String purpose;
-
     @JsonProperty("height")
     private Integer height;
 
     @JsonProperty("weight")
     private Integer weight;
+
+    @JsonProperty("purpose")
+    private String purpose;
 }

@@ -1,24 +1,24 @@
 package org.itstep.sport.service.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.itstep.sport.service.dto.TraineeDTO;
 import org.itstep.sport.service.dto.request.TraineeSaveRequest;
 import org.itstep.sport.service.dto.request.UpdateTraineeRequest;
 import org.itstep.sport.service.dto.response.TraineeSaveResponse;
 import org.itstep.sport.service.dto.response.UpdateTraineeResponse;
+import org.itstep.sport.service.dto.response.UserCabinetResponse;
 import org.itstep.sport.service.mapper.TraineeMapper;
 import org.itstep.sport.service.model.Trainee;
-import org.itstep.sport.service.model.UserDetailsImpl;
 import org.itstep.sport.service.service.TraineeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/trainees")
@@ -27,6 +27,16 @@ public class TraineeController {
 
     private final TraineeService traineeService;
     private final TraineeMapper traineeMapper;
+
+    @PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMIN')")
+    @GetMapping(
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<List<TraineeDTO>> findAllTrainees() {
+        List<TraineeDTO> trainees = traineeService.findAllDto();
+
+        return ResponseEntity.ok(trainees);
+    }
 
     @PostMapping(
             produces = MediaType.APPLICATION_JSON_VALUE,
@@ -58,5 +68,19 @@ public class TraineeController {
         Trainee updatedTrainee = traineeService.update(trainee, username);
 
         return ResponseEntity.ok(traineeMapper.mapToUpdateTraineeResponseFromTrainee(updatedTrainee));
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_TRAINEE')")
+    @GetMapping(
+            value = "/cabinet",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<UserCabinetResponse> getUserCabinet(
+            @AuthenticationPrincipal String username) {
+        Trainee trainee = traineeService.getUserCabinet(username);
+
+        UserCabinetResponse response = traineeMapper.mapToTraineeCabinetResponse(trainee);
+
+        return ResponseEntity.ok(response);
     }
 }

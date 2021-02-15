@@ -4,8 +4,8 @@ import org.itstep.sport.service.dto.request.TraineeSaveRequest;
 import org.itstep.sport.service.dto.request.UpdateTraineeRequest;
 import org.itstep.sport.service.dto.response.TraineeSaveResponse;
 import org.itstep.sport.service.dto.response.UpdateTraineeResponse;
+import org.itstep.sport.service.dto.response.UserCabinetResponse;
 import org.itstep.sport.service.model.Trainee;
-import org.itstep.sport.service.model.Trainee_;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
@@ -19,12 +19,14 @@ public interface TraineeMapper {
     Trainee mapToTraineeFromTraineeUpdateRequest(UpdateTraineeRequest request);
     UpdateTraineeResponse mapToUpdateTraineeResponseFromTrainee(Trainee trainee);
     @Mappings({
-            @Mapping(target = Trainee_.ID, ignore = true),
-            @Mapping(target = Trainee_.AUTHORITY, ignore = true),
-            @Mapping(target = Trainee_.USERNAME, ignore = true),
-            @Mapping(target = Trainee_.PASSWORD, ignore = true),
-            @Mapping(target = Trainee_.COACHES, ignore = true),
-            @Mapping(target = Trainee_.COMMENTS, ignore = true)
+            @Mapping(target = "existing.id", ignore = true),
+            @Mapping(target = "existing.authority", ignore = true),
+            @Mapping(target = "existing.username", ignore = true),
+            @Mapping(target = "existing.password", ignore = true),
+            @Mapping(target = "existing.coaches", ignore = true),
+            @Mapping(target = "existing.comments", ignore = true),
     })
     void updateExistingTrainee(@MappingTarget Trainee existing, Trainee from);
+
+    UserCabinetResponse mapToTraineeCabinetResponse(Trainee trainee);
 }
