@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface CoachRepositoryImpl extends UserRepository<Coach, Long> {
 
-    @Query("select new org.itstep.sport.service.dto.CoachDTO(c.id, c.firstname, c.lastname, c.phoneNumber, c.category, c.sportClass, c.achievements) from Coach c")
+    @Query("select new org.itstep.sport.service.dto.CoachDTO(c.id, c.username, c.firstname, c.lastname, c.phoneNumber, c.category, c.sportClass, c.achievements) from Coach c")
     List<CoachDTO> findAllDto();
 }

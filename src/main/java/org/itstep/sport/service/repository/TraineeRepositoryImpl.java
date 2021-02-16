@@ -18,6 +18,6 @@ public interface TraineeRepositoryImpl extends UserRepository<Trainee, Long> {
     @EntityGraph(attributePaths = {Trainee_.COACHES})
     Optional<Trainee> findByIdWithCoaches(@Param("id") Long id);
 
-    @Query("select new org.itstep.sport.service.dto.TraineeDTO(t.id, t.firstname, t.lastname, t.phoneNumber, t.purpose, t.weight, t.height) from Trainee t")
+    @Query("select new org.itstep.sport.service.dto.TraineeDTO(t.id, t.username, t.firstname, t.lastname, t.phoneNumber, t.purpose, t.weight, t.height) from Trainee t")
     List<TraineeDTO> findAllDto();
 }

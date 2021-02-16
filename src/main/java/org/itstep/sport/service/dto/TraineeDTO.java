@@ -11,23 +11,26 @@ import lombok.NoArgsConstructor;
 public class TraineeDTO {
 
     @JsonProperty("id")
-    public Long id;
+    private Long id;
+
+    @JsonProperty("username")
+    private String username;
 
     @JsonProperty("firstname")
-    public String firstname;
+    private String firstname;
 
     @JsonProperty("lastname")
-    public String lastname;
+    private String lastname;
 
     @JsonProperty("phoneNumber")
-    public String phoneNumber;
+    private String phoneNumber;
 
     @JsonProperty("purpose")
-    public String purpose;
+    private String purpose;
 
     @JsonProperty("weight")
-    public Integer weight;
+    private Integer weight;
 
     @JsonProperty("height")
-    public Integer height;
+    private Integer height;
 }

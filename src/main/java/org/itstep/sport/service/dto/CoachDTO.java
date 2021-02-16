@@ -13,6 +13,9 @@ public class CoachDTO {
     @JsonProperty("id")
     private Long id;
 
+    @JsonProperty("username")
+    private String username;
+
     @JsonProperty("firstname")
     private String firstname;
 
