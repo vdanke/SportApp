@@ -1,33 +1,23 @@
 package org.itstep.sport.service.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserCabinetResponse {
+public abstract class UserCabinetResponse {
 
     @JsonProperty("username")
-    private String username;
+    protected String username;
 
     @JsonProperty("firstname")
-    private String firstname;
+    protected String firstname;
 
     @JsonProperty("lastname")
-    private String lastname;
+    protected String lastname;
 
     @JsonProperty("phoneNumber")
-    private String phoneNumber;
-
-    @JsonProperty("height")
-    private Integer height;
-
-    @JsonProperty("weight")
-    private Integer weight;
-
-    @JsonProperty("purpose")
-    private String purpose;
+    protected String phoneNumber;
 }

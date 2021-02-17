@@ -9,9 +9,5 @@ public interface TraineeService {
 
     Trainee save(Trainee trainee);
 
-    Trainee update(Trainee trainee, String username);
-
-    Trainee getUserCabinet(String username);
-
     List<TraineeDTO> findAllDto();
 }

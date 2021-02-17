@@ -4,7 +4,7 @@ import org.itstep.sport.service.dto.request.TraineeSaveRequest;
 import org.itstep.sport.service.dto.request.UpdateTraineeRequest;
 import org.itstep.sport.service.dto.response.TraineeSaveResponse;
 import org.itstep.sport.service.dto.response.UpdateTraineeResponse;
-import org.itstep.sport.service.dto.response.UserCabinetResponse;
+import org.itstep.sport.service.dto.response.TraineeCabinetResponse;
 import org.itstep.sport.service.model.Trainee;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -28,5 +28,5 @@ public interface TraineeMapper {
     })
     void updateExistingTrainee(@MappingTarget Trainee existing, Trainee from);
 
-    UserCabinetResponse mapToTraineeCabinetResponse(Trainee trainee);
+    TraineeCabinetResponse mapToTraineeCabinetResponse(Trainee trainee);
 }

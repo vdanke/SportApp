@@ -16,7 +16,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+//@Builder
 @EqualsAndHashCode(of = "name")
 @ToString
 @DynamicInsert

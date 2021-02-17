@@ -6,9 +6,10 @@ import org.itstep.sport.service.dto.request.TraineeSaveRequest;
 import org.itstep.sport.service.dto.request.UpdateTraineeRequest;
 import org.itstep.sport.service.dto.response.TraineeSaveResponse;
 import org.itstep.sport.service.dto.response.UpdateTraineeResponse;
-import org.itstep.sport.service.dto.response.UserCabinetResponse;
+import org.itstep.sport.service.dto.response.TraineeCabinetResponse;
 import org.itstep.sport.service.mapper.TraineeMapper;
 import org.itstep.sport.service.model.Trainee;
+import org.itstep.sport.service.service.CabinetService;
 import org.itstep.sport.service.service.TraineeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,6 +27,7 @@ import java.util.List;
 public class TraineeController {
 
     private final TraineeService traineeService;
+    private final CabinetService<Trainee> cabinetService;
     private final TraineeMapper traineeMapper;
 
     @PreAuthorize("hasAnyRole('ROLE_COACH', 'ROLE_ADMIN')")
@@ -65,7 +67,7 @@ public class TraineeController {
     ) {
         Trainee trainee = traineeMapper.mapToTraineeFromTraineeUpdateRequest(request);
 
-        Trainee updatedTrainee = traineeService.update(trainee, username);
+        Trainee updatedTrainee = cabinetService.update(trainee, username);
 
         return ResponseEntity.ok(traineeMapper.mapToUpdateTraineeResponseFromTrainee(updatedTrainee));
     }
@@ -75,11 +77,11 @@ public class TraineeController {
             value = "/cabinet",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<UserCabinetResponse> getUserCabinet(
+    public ResponseEntity<TraineeCabinetResponse> getUserCabinet(
             @AuthenticationPrincipal String username) {
-        Trainee trainee = traineeService.getUserCabinet(username);
+        Trainee trainee = cabinetService.getUserCabinet(username);
 
-        UserCabinetResponse response = traineeMapper.mapToTraineeCabinetResponse(trainee);
+        TraineeCabinetResponse response = traineeMapper.mapToTraineeCabinetResponse(trainee);
 
         return ResponseEntity.ok(response);
     }

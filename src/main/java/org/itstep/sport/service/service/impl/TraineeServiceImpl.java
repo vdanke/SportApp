@@ -7,6 +7,7 @@ import org.itstep.sport.service.mapper.TraineeMapper;
 import org.itstep.sport.service.model.Authorities;
 import org.itstep.sport.service.model.Trainee;
 import org.itstep.sport.service.repository.TraineeRepositoryImpl;
+import org.itstep.sport.service.service.CabinetService;
 import org.itstep.sport.service.service.TraineeService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class TraineeServiceImpl implements TraineeService {
+public class TraineeServiceImpl implements TraineeService, CabinetService<Trainee> {
 
     private final TraineeRepositoryImpl traineeRepository;
     private final TraineeMapper traineeMapper;
